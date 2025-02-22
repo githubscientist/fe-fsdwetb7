@@ -1,15 +1,21 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router-dom";
-
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 const routes = [
   {
     path: "/",
-    element: <>
-      <h1 className="text-3xl font-bold underline">
-        Hello World!
-      </h1>
-    </>
+    element: <Home />
+  },
+  {
+    path: "/register",
+    element: <Register />
+  },
+  {
+    path: "/login",
+    element: <Login />
   }
 ];
 
