@@ -3,6 +3,9 @@ import { RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import authLoader from "./loaders/unit/authLoader";
+import Logout from "./pages/Logout";
 
 const routes = [
   {
@@ -16,6 +19,16 @@ const routes = [
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    loader: authLoader,
+    hydrateFallbackElement: <div>Loading...</div>
+  },
+  {
+    path: "/logout",
+    element: <Logout />
   }
 ];
 

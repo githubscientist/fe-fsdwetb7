@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
 import { useNavigate } from "react-router";
-import instance from "../services/instance";
+import authServices from "../services/authServices";
 
 const Register = () => {
 
@@ -16,11 +16,7 @@ const Register = () => {
         e.preventDefault();
 
         // registration flow
-        instance.post("/auth/register", {
-            name,
-            email,
-            password
-        })
+        authServices.register({ name, email, password })
             .then((response) => {
                 alert(response.data.message);
 
