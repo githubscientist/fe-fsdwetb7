@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
-import axios from "axios";
 import { useNavigate } from "react-router";
+import instance from "../services/instance";
 
 const Register = () => {
 
@@ -16,7 +16,7 @@ const Register = () => {
         e.preventDefault();
 
         // registration flow
-        axios.post("http://localhost:3001/auth/register", {
+        instance.post("/auth/register", {
             name,
             email,
             password
