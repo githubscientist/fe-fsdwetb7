@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectEmail, selectName, selectPassword, setEmail, setName, setPassword } from "../redux/features/auth/registerSlice";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 const Register = () => {
 
@@ -8,11 +10,31 @@ const Register = () => {
     const password = useSelector(selectPassword);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleRegister = (e) => {
         e.preventDefault();
 
-        console.log(name, email, password);
+        // registration flow
+        axios.post("http://localhost:3001/auth/register", {
+            name,
+            email,
+            password
+        })
+            .then((response) => {
+                alert(response.data.message);
+
+                // clear the form
+                dispatch(setName(""));
+                dispatch(setEmail(""));
+                dispatch(setPassword(""));
+
+                // redirect to login page
+                navigate("/login");
+            })
+            .catch((err) => {
+                alert(err.response.data.message);
+            })
     }
 
     return (
